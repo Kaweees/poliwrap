@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "poliwrap"
-version = "0.0.5"
+version = "0.0.6"
 description = "A lightweight, framework-agnostic abstraction for reinforcement learning policy inference."
 authors = [
   { name = "Miguel Villa Floran", email = "miguel.villafloran@gmail.com" },
@@ -24,12 +24,16 @@ classifiers = [
 readme = "README.md"
 license = { file = "LICENSE" }
 
-dependencies = ["numpy>=2.2.6"]
+dependencies = ["numpy"]
 
 [project.optional-dependencies]
-onnx = ["onnxruntime>=1.16.0"]
-torch = ["torch>=2.10.0"]
+onnx = ["onnxruntime"]
+onnx-gpu = ["onnxruntime-gpu"]
+torch = ["torch"]
 all = ["poliwrap[onnx]", "poliwrap[torch]"]
+
+[tool.uv]
+conflicts = [[{ extra = "onnx" }, { extra = "onnx-gpu" }]]
 
 [dependency-groups]
 dev = ["pre-commit"]
