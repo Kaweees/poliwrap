@@ -29,7 +29,7 @@ dependencies = ["numpy"]
 [project.optional-dependencies]
 onnx = ["onnxruntime"]
 onnx-gpu = ["onnxruntime-gpu"]
-torch = ["torch"]
+torch = ["torch", "rsl-rl-lib"]
 all = ["poliwrap[onnx]", "poliwrap[torch]"]
 
 [tool.uv]
