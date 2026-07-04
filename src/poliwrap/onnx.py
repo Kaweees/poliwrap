@@ -29,5 +29,5 @@ class ONNXPolicyWrapper(PolicyWrapper):
             self.output_names,
             {inp.name: obs[inp.name] for inp in self.model.get_inputs()},
         )
-        # Postprocess actions (inherited method can be overridden)
+        # Postprocess actions
         return self.postprocess_actions(actions)

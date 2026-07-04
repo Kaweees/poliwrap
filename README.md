@@ -28,9 +28,9 @@ actions = policy({"actor_obs": obs})  # obs: dict[str, np.ndarray]
 ### PyTorch
 
 ```python
-from poliwrap import PytorchPolicyWrapper
+from poliwrap import TorchPolicyWrapper
 
-policy = PytorchPolicyWrapper("policy.pt")
+policy = TorchPolicyWrapper("policy.pt")
 actions = policy({"actor_obs": obs})  # obs: dict[str, torch.Tensor]
 ```
 

@@ -7,7 +7,7 @@ import torch
 from poliwrap.policy import PolicyWrapper
 
 
-class PytorchPolicyWrapper(PolicyWrapper):
+class TorchPolicyWrapper(PolicyWrapper):
     """Wrapper for Pytorch policies."""
 
     def __init__(self, model_path: Path) -> None:
