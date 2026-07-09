@@ -5,10 +5,10 @@ from pathlib import Path
 import numpy as np
 import onnxruntime as ort
 
-from poliwrap.policy import PolicyWrapper
+from poliwrap.policy import FilePolicyWrapper
 
 
-class ONNXPolicyWrapper(PolicyWrapper):
+class ONNXPolicyWrapper(FilePolicyWrapper[dict[str, np.ndarray], list[np.ndarray]]):
     """Wrapper for ONNX policies."""
 
     def __init__(self, model_path: Path) -> None:
@@ -21,7 +21,7 @@ class ONNXPolicyWrapper(PolicyWrapper):
         self.input_names = [inp.name for inp in self.model.get_inputs()]
         self.output_names = [out.name for out in self.model.get_outputs()]
 
-    def __call__(self, obs: dict[str, np.ndarray]) -> np.ndarray:
+    def __call__(self, obs: dict[str, np.ndarray]) -> list[np.ndarray]:
         # Preprocess observations
         obs = self.preprocess_observations(obs)
         # Run inference

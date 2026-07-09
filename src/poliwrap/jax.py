@@ -8,10 +8,10 @@ import jax.numpy as jnp
 import numpy as np
 from orbax.checkpoint import v1 as ocp
 
-from poliwrap.policy import PolicyWrapper
+from poliwrap.policy import FilePolicyWrapper
 
 
-class JaxPolicyWrapper(PolicyWrapper):
+class JaxPolicyWrapper(FilePolicyWrapper[dict[str, np.ndarray], np.ndarray]):
     """Wrapper for JAX policies."""
 
     def __init__(self, model_path: Path, apply_fn: Callable[..., jax.Array]) -> None:
@@ -21,7 +21,7 @@ class JaxPolicyWrapper(PolicyWrapper):
         self._load_model()
 
     def _load_model(self) -> None:
-        self.model = ocp.load(str(Path(self.model_path).resolve()))
+        self.model = ocp.load(str(self.model_path.resolve()))
         self._jitted_apply = jax.jit(self.apply_fn)
 
     def __call__(self, obs: dict[str, np.ndarray]) -> np.ndarray:

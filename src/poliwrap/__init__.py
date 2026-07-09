@@ -1,6 +1,6 @@
-from poliwrap.policy import PolicyWrapper
+from poliwrap.policy import FilePolicyWrapper, PolicyWrapper
 
-__all__ = ["PolicyWrapper"]
+__all__ = ["FilePolicyWrapper", "PolicyWrapper"]
 
 try:
     from poliwrap.jax import JaxPolicyWrapper  # noqa: F401
